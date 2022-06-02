@@ -1,0 +1,19 @@
+{% extends "tnt_mgmt/base.html" %}
+{% load extra_filters %}
+{% block content %}
+    {% comment %} <h1></h1> {% endcomment %}
+    <h1>Добро пожаловать в <strong>Happy Tenants</strong></h1><h2>Лучшая система управления жилищно-коммунальными услугами</h2>
+    {% if request.user.is_authenticated %}
+        <h3>Здравствуйте, {{ request.user.first_name }}</h3>
+        {% if request.user|is_active %}
+            <h4>Вы можете воспользоваться любым, доступным Вам сервисом, </br> расположенном в меню справа</h4> 
+        {% else %}
+            <p>Ваш аккаунт не был подтвержден</br> Пожалуйста, ожидайте подтверждения.</p> 
+        {% endif %}
+    {% else %}
+        <p>Пожалуйста, войдите или зарегистрируйтесь, если у Вас нет аккаунта.</p>
+        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+        <a class="nav-link" href="{% url 'register' %}">Зарегистрироваться</a>
+    {% endif %}
+
+{% endblock content %}

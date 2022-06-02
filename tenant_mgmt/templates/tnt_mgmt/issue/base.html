@@ -1,0 +1,13 @@
+{% extends "tnt_mgmt/base.html" %}
+{% block additional_actions %}
+{% load extra_filters%}
+    <div class="content-section">
+        <h5 class='text-muted'>Заявки</h5>
+        <ul class="list-group">
+            {% if request.user|has_groups:"administrator|manager|tenant" %}
+            <li class="list-group-item list-group-item-light"><a href="{% url 'newIssue' %}">Создать новую заявку</a></li>
+            {%endif%}
+            {% block details_view_actions %}{% endblock details_view_actions %}
+        </ul>
+    </div>
+{% endblock additional_actions %}

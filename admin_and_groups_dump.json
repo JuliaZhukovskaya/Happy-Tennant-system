@@ -1,0 +1,40 @@
+[
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": { "name": "administrator", "permissions": [36, 37, 38, 39, 40] }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": { "name": "manager", "permissions": [40] }
+  },
+  {
+    "model": "auth.group",
+    "pk": 3,
+    "fields": { "name": "tenant", "permissions": [] }
+  },
+  {
+    "model": "auth.group",
+    "pk": 4,
+    "fields": { "name": "employee", "permissions": [] }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$3aekhqbsBYCHsk4l4FnG4s$BRp6H2GSCTLz+8lqJOuRoLg8ZCeLxlmg/LhJOD2ZtVE=",
+      "last_login": "2022-03-10T22:49:44Z",
+      "is_superuser": false,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@happytenant.org",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-03-10T22:44:34Z",
+      "groups": [1],
+      "user_permissions": []
+    }
+  }
+]

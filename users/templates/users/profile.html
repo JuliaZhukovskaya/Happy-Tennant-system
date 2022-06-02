@@ -1,0 +1,22 @@
+{% extends "tnt_mgmt/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{user.profile.picture.url}}">
+      <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+        <h6 class="text-secondary"> Группы: </h6>
+        {% for group in user.groups.all %}
+          <ul>
+            <li class="text-secondary"> {{ group.name }}</li>
+          </ul>
+        {% empty %}
+            <small> Группа не определена</small>
+        {% endfor %}
+      </div>
+    </div>
+    <a class="btn btn-primary" href="{% url 'updateProfile' %}" role="button">Обновить профиль</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "./base.html" %} {% block content %}
+{% load extra_filters %}
+{% if request.user|has_groups:"administrator|manager" %}
+  <h1>Все доступные заявки</h1>
+{% endif %}
+{% if request.user|has_groups:"employee" %}
+  <h1>Заявки, назначенные мне</h1>
+{% endif %}
+{% if request.user|has_groups:"tenant" %}
+  <h1>Заявки, отправленные мной</h1>
+{% endif %}
+{% for issue in issues %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'issueDetails' issue.id %}"> <b> {{ issue }} </b></a>
+      <small class="text-muted"
+        >Создана: {{ issue.created}} , Обновлена: {{issue.updated}}</small>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <small> Текущий статус: {{issue.status}}</small>
+        </div>
+        {% if request.user|has_groups:"administrator|manager|tenant" and issue.status == 'СОЗДАНА' %}
+        <div class="col-md-auto">
+          <a class="btn btn-primary btn-sm" href="{% url 'issueEdit' issue.id %}" role="button">Изменить</a>
+        </div>
+        <div class="col col-lg-2">
+          <a class="btn btn-primary btn-sm" href="{% url 'issueDelete' issue.id %}" role="button" >Удалить</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
+{% empty %}
+<small>Пусто</small>
+{% endfor %} 
+{% endblock content %}
